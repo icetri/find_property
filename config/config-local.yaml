@@ -1,0 +1,8 @@
+postgres_dsn: "host=127.0.0.1 port=5432 user=user123 password=123 dbname=find_property sslmode=disable"
+
+http:
+  server_port: ":8080"
+
+telegram:
+  telegram_token: "BOT:TOKEN"
+  chat_id: "1"

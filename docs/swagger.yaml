@@ -1,0 +1,1378 @@
+basePath: /
+definitions:
+  domain.Advert:
+    properties:
+      address:
+        type: string
+      area:
+        type: string
+      deadlineInfo:
+        type: string
+      decoration:
+        type: string
+      developer_name:
+        type: string
+      floor_number:
+        type: integer
+      id:
+        type: integer
+      images:
+        type: string
+      jk_fullUrl:
+        type: string
+      jk_id:
+        type: integer
+      jk_name:
+        type: string
+      lat:
+        type: string
+      lng:
+        type: string
+      metro:
+        type: string
+      price:
+        type: integer
+      rooms_count:
+        type: string
+      subcategory:
+        type: string
+      underground:
+        items:
+          $ref: '#/definitions/domain.Metro'
+        type: array
+      url:
+        type: string
+      webSiteUrlUtm:
+        type: string
+    type: object
+  domain.Filter:
+    properties:
+      address:
+        description: example Адрес ... либо пустое
+        type: string
+      area1:
+        description: example 55.9
+        type: string
+      area2:
+        description: example 76.0
+        type: string
+      before_metro:
+        description: example неважно, только пешком
+        type: string
+      building_year1:
+        description: example 2010
+        type: integer
+      building_year2:
+        description: example 2024
+        type: integer
+      category:
+        description: example только квартиры, квартиры и апартаменты, только апартаменты
+        type: string
+      default:
+        type: string
+      floors:
+        description: example только не первый
+        type: string
+      id:
+        type: string
+      jk_ids:
+        items:
+          type: string
+        type: array
+      jk_name:
+        description: example ЖК ... либо пустое
+        type: string
+      metro:
+        description: example Речной вокзал
+        items:
+          type: string
+        type: array
+      price1:
+        description: example 6459462
+        type: integer
+      price2:
+        description: example 7194195
+        type: integer
+      repair_type:
+        description: example euro
+        type: string
+      rooms_count:
+        description: example [1-комн (евродва),2-комн (евротри),3-комн,4+комн,студия]
+        items:
+          type: string
+        type: array
+      silence:
+        type: string
+      subcategory:
+        description: example Новостройка, Вторичка
+        type: string
+      type_balcony:
+        description: example неважно,балкон, лоджия
+        type: string
+      user_id:
+        type: integer
+    type: object
+  domain.Metro:
+    properties:
+      cian_id:
+        type: integer
+      created_at:
+        type: string
+      id:
+        type: string
+      is_default:
+        type: boolean
+      line_color:
+        type: string
+      line_id:
+        type: string
+      metro:
+        type: string
+      time:
+        type: integer
+      transport_type:
+        type: string
+    type: object
+  domain.ReverseJK:
+    properties:
+      jk_id:
+        type: integer
+      user_id:
+        type: integer
+    type: object
+  domain.StartSearch:
+    properties:
+      limit:
+        example: 1
+        type: integer
+      offset:
+        example: 0
+        type: integer
+      user_id:
+        type: integer
+    required:
+    - limit
+    - user_id
+    type: object
+  domain.SubwayLines:
+    properties:
+      line_id:
+        type: string
+      line_name:
+        type: string
+    type: object
+  domain.UserSignUpInput:
+    properties:
+      user_id:
+        type: integer
+    required:
+    - user_id
+    type: object
+  v1.createFilter:
+    properties:
+      address:
+        description: example ЖК ... либо пустое
+        example: Не важно
+        type: string
+      area1:
+        description: example 55.9
+        example: "80"
+        type: string
+      area2:
+        description: example 76.0
+        example: "150"
+        type: string
+      before_metro:
+        description: example неважно, только пешком
+        example: Не важно
+        type: string
+      building_year1:
+        description: example 2010
+        example: 2010
+        type: integer
+      building_year2:
+        description: example 2024
+        example: 2024
+        type: integer
+      category:
+        description: example только квартиры, квартиры и апартаменты, только апартаменты
+        example: Квартиры и апартаменты
+        type: string
+      floors:
+        description: example только не первый
+        example: Только не первый
+        type: string
+      jk_name:
+        description: example ЖК ... либо пустое
+        example: Не важно
+        type: string
+      metro:
+        description: example Речной вокзал
+        example:
+        - "1"
+        - "2"
+        - "3"
+        - "4"
+        - "5"
+        - "6"
+        - "7"
+        - "8"
+        - "9"
+        - "10"
+        - "11"
+        - "12"
+        - "13"
+        - "14"
+        - "15"
+        - "16"
+        - "17"
+        - "18"
+        - "19"
+        - "20"
+        - "21"
+        - "22"
+        - "23"
+        - "24"
+        - "25"
+        - "26"
+        - "27"
+        - "28"
+        - "29"
+        - "30"
+        - "31"
+        - "32"
+        - "33"
+        - "34"
+        - "35"
+        items:
+          type: string
+        type: array
+      price1:
+        description: example 6459462
+        example: 10000000
+        type: integer
+      price2:
+        description: example 7194195
+        example: 100000000
+        type: integer
+      repair_type:
+        description: example euro
+        example: Не важно
+        type: string
+      rooms_count:
+        description: example [1-комн (евродва),2-комн (евротри),3-комн,4+комн,студия]
+        example:
+        - 1-комн (евродва)
+        - 2-комн (евротри)
+        items:
+          type: string
+        type: array
+      subcategory:
+        example: Новостройка
+        type: string
+      type_balcony:
+        description: example неважно,балкон, лоджия
+        example: Не важно
+        type: string
+      user_id:
+        type: integer
+    type: object
+  v1.createUser:
+    properties:
+      user_id:
+        type: integer
+    required:
+    - user_id
+    type: object
+  v1.createView:
+    properties:
+      cian_id:
+        type: integer
+      user_id:
+        type: integer
+    type: object
+  v1.findLines:
+    properties:
+      query:
+        type: string
+    required:
+    - query
+    type: object
+  v1.result:
+    properties:
+      error:
+        type: string
+    type: object
+  v1.updateAddress:
+    properties:
+      address:
+        example: Не важно
+        type: string
+      user_id:
+        type: integer
+    required:
+    - address
+    - user_id
+    type: object
+  v1.updateArea:
+    properties:
+      area1:
+        example: "40"
+        type: string
+      area2:
+        example: "60"
+        type: string
+      user_id:
+        type: integer
+    required:
+    - area1
+    - area2
+    - user_id
+    type: object
+  v1.updateBuildingYear:
+    properties:
+      building_year1:
+        example: 2010
+        type: integer
+      building_year2:
+        example: 2024
+        type: integer
+      user_id:
+        type: integer
+    required:
+    - building_year1
+    - building_year2
+    - user_id
+    type: object
+  v1.updateCategory:
+    properties:
+      category:
+        example: Квартиры и апартаменты
+        type: string
+      user_id:
+        type: integer
+    required:
+    - category
+    - user_id
+    type: object
+  v1.updateDefault:
+    properties:
+      default:
+        type: string
+      user_id:
+        type: integer
+    required:
+    - user_id
+    type: object
+  v1.updateFloors:
+    properties:
+      floors:
+        example: Только не последний
+        type: string
+      user_id:
+        type: integer
+    required:
+    - floors
+    - user_id
+    type: object
+  v1.updateJK:
+    properties:
+      jk_name:
+        example: Не важно
+        type: string
+      user_id:
+        type: integer
+    required:
+    - jk_name
+    - user_id
+    type: object
+  v1.updateMetro:
+    properties:
+      metro:
+        example:
+        - "1"
+        - "2"
+        - "3"
+        - "4"
+        - "5"
+        - "6"
+        - "7"
+        - "8"
+        - "9"
+        - "10"
+        - "11"
+        - "12"
+        - "13"
+        - "14"
+        - "15"
+        - "16"
+        - "17"
+        - "18"
+        - "19"
+        - "20"
+        - "21"
+        - "22"
+        - "23"
+        - "24"
+        - "25"
+        - "26"
+        - "27"
+        - "28"
+        - "29"
+        - "30"
+        - "31"
+        - "32"
+        - "33"
+        - "34"
+        - "35"
+        items:
+          type: string
+        type: array
+      user_id:
+        type: integer
+    required:
+    - metro
+    - user_id
+    type: object
+  v1.updateMetroBefore:
+    properties:
+      before_metro:
+        example: Не важно
+        type: string
+      user_id:
+        type: integer
+    required:
+    - before_metro
+    - user_id
+    type: object
+  v1.updatePrice:
+    properties:
+      price1:
+        example: 7500000
+        type: integer
+      price2:
+        example: 9000000
+        type: integer
+      user_id:
+        type: integer
+    required:
+    - price1
+    - price2
+    - user_id
+    type: object
+  v1.updateRepairType:
+    properties:
+      repair_type:
+        example: Не важно
+        type: string
+      user_id:
+        type: integer
+    required:
+    - repair_type
+    - user_id
+    type: object
+  v1.updateRooms:
+    properties:
+      rooms_count:
+        example:
+        - 1-комн (евродва)
+        - 2-комн (евротри)
+        items:
+          type: string
+        type: array
+      user_id:
+        type: integer
+    required:
+    - rooms_count
+    - user_id
+    type: object
+  v1.updateSilence:
+    properties:
+      silence:
+        type: string
+      user_id:
+        type: integer
+    required:
+    - user_id
+    type: object
+  v1.updateSubcategory:
+    properties:
+      subcategory:
+        example: Новостройка
+        type: string
+      user_id:
+        type: integer
+    required:
+    - subcategory
+    - user_id
+    type: object
+  v1.updateTypeBalcony:
+    properties:
+      type_balcony:
+        example: Не важно
+        type: string
+      user_id:
+        type: integer
+    required:
+    - type_balcony
+    - user_id
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: Api server for ....
+  title: Swagger .....
+  version: 0.1.1
+paths:
+  /address:
+    post:
+      consumes:
+      - application/json
+      description: обнавление адреса
+      operationId: address
+      parameters:
+      - description: Ввести название например улицы или Не важно
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/v1.updateAddress'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/v1.result'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v1.result'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/v1.result'
+      summary: Address
+      tags:
+      - filters
+  /area:
+    post:
+      consumes:
+      - application/json
+      description: обнавление площади
+      operationId: area
+      parameters:
+      - description: json area
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/v1.updateArea'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/v1.result'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v1.result'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/v1.result'
+      summary: Area
+      tags:
+      - filters
+  /balcony:
+    post:
+      consumes:
+      - application/json
+      description: обнавление ложия или балкон
+      operationId: balcony
+      parameters:
+      - description: 'Типы балконо: Не важно или Лоджия или Балкон, All все с большой
+          буквы'
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/v1.updateTypeBalcony'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/v1.result'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v1.result'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/v1.result'
+      summary: Balcony
+      tags:
+      - filters
+  /buildingYear:
+    post:
+      consumes:
+      - application/json
+      description: обнавление года постройки
+      operationId: building-year
+      parameters:
+      - description: building_year1 строго с 2010, building_year2 любое
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/v1.updateBuildingYear'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/v1.result'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v1.result'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/v1.result'
+      summary: BuildingYear
+      tags:
+      - filters
+  /category:
+    post:
+      consumes:
+      - application/json
+      description: обнавление категории дома
+      operationId: category
+      parameters:
+      - description: 'Вводить 1 из 3: Только квартиры или Квартиры и апартаменты или
+          Только апартаменты все с большой буквы!!'
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/v1.updateCategory'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/v1.result'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v1.result'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/v1.result'
+      summary: Category
+      tags:
+      - filters
+  /create:
+    post:
+      consumes:
+      - application/json
+      description: Добавление всех фильтров и регистрация разом
+      operationId: registration-user
+      parameters:
+      - description: регистрация все фильтров пользователю
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/v1.createFilter'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: ok
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/v1.result'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v1.result'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/v1.result'
+      summary: RegistrationUser
+      tags:
+      - user
+  /default:
+    post:
+      consumes:
+      - application/json
+      description: обнавление дефолта
+      operationId: default
+      parameters:
+      - description: для дефолта
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/v1.updateDefault'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/v1.result'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v1.result'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/v1.result'
+      summary: Default
+      tags:
+      - filters
+  /floors:
+    post:
+      consumes:
+      - application/json
+      description: обнавление этажей
+      operationId: floors
+      parameters:
+      - description: ' или Только не первый или Только не последний или All'
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/v1.updateFloors'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/v1.result'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v1.result'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/v1.result'
+      summary: Floors
+      tags:
+      - filters
+  /jk:
+    post:
+      consumes:
+      - application/json
+      description: обнавление ЖК
+      operationId: jk
+      parameters:
+      - description: Ввести название жк или Не важно
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/v1.updateJK'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/v1.result'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v1.result'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/v1.result'
+      summary: JK
+      tags:
+      - filters
+  /jk/add:
+    post:
+      consumes:
+      - application/json
+      description: запись на повтор жк
+      operationId: add-reverse-sweep-jk
+      parameters:
+      - description: kek
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/domain.ReverseJK'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/v1.result'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v1.result'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/v1.result'
+      summary: AddReverseSweepJK
+      tags:
+      - user
+  /login:
+    post:
+      consumes:
+      - application/json
+      description: Всегда после /start
+      operationId: register-or-login
+      parameters:
+      - description: регистрация по телеграмм юзер айди
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/domain.UserSignUpInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: bool
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/v1.result'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v1.result'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/v1.result'
+      summary: CheckUserRegistered
+      tags:
+      - user
+  /metro:
+    post:
+      consumes:
+      - application/json
+      description: обнавление метро
+      operationId: metro
+      parameters:
+      - description: Вводить или название метро или Не важно
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/v1.updateMetro'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/v1.result'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v1.result'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/v1.result'
+      summary: Metro
+      tags:
+      - filters
+  /metro/before:
+    post:
+      consumes:
+      - application/json
+      description: обнавление до метро
+      operationId: metro-before
+      parameters:
+      - description: Вводить Только пешком с большой буквы или Не важно
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/v1.updateMetroBefore'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/v1.result'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v1.result'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/v1.result'
+      summary: MetroBefore
+      tags:
+      - filters
+  /ping:
+    get:
+      description: ПИНГ
+      operationId: ping
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+        "400":
+          description: Bad Request
+          schema:
+            type: integer
+      summary: Init
+  /price:
+    post:
+      consumes:
+      - application/json
+      description: обнавление цены
+      operationId: price
+      parameters:
+      - description: json price
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/v1.updatePrice'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/v1.result'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v1.result'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/v1.result'
+      summary: Price
+      tags:
+      - filters
+  /repair:
+    post:
+      consumes:
+      - application/json
+      description: обнавление ремонта
+      operationId: repair-type
+      parameters:
+      - description: 'Типы ремонта строго такие: Чистовая, Черновая, Нет, Не важно'
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/v1.updateRepairType'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/v1.result'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v1.result'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/v1.result'
+      summary: RepairType
+      tags:
+      - filters
+  /rooms:
+    post:
+      consumes:
+      - application/json
+      description: обнавление комнат
+      operationId: rooms
+      parameters:
+      - description: 'Название вводить строго такие: 1-комн (евродва), 2-комн (евротри),
+          3-комн, 4+комн, студия'
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/v1.updateRooms'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/v1.result'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v1.result'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/v1.result'
+      summary: Rooms
+      tags:
+      - filters
+  /search:
+    post:
+      consumes:
+      - application/json
+      description: поиск
+      operationId: search
+      parameters:
+      - description: поиск по юзер айди фильтру с пагинацией
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/domain.StartSearch'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/domain.Advert'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/v1.result'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v1.result'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/v1.result'
+      summary: Поиск
+      tags:
+      - search
+  /silence:
+    post:
+      consumes:
+      - application/json
+      description: обнавление дефолта1
+      operationId: silence
+      parameters:
+      - description: для дефолта1
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/v1.updateSilence'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/v1.result'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v1.result'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/v1.result'
+      summary: Silence
+      tags:
+      - filters
+  /subcategory:
+    post:
+      consumes:
+      - application/json
+      description: обнавление субкатегории
+      operationId: subcategory
+      parameters:
+      - description: только Новостройка или Вторичка слова начинаются с большой буквы
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/v1.updateSubcategory'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/v1.result'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v1.result'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/v1.result'
+      summary: Subcategory
+      tags:
+      - filters
+  /subways:
+    get:
+      consumes:
+      - application/json
+      description: все линий
+      operationId: subways
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/domain.SubwayLines'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v1.result'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/v1.result'
+      summary: Subways
+      tags:
+      - user
+  /user/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Инфа о юзере
+      operationId: get-user
+      parameters:
+      - description: Необходим user_id телеграма
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/domain.Filter'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/v1.result'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v1.result'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/v1.result'
+      summary: GetUser
+      tags:
+      - user
+  /user/create:
+    post:
+      consumes:
+      - application/json
+      description: Добавление юзера если у него нет фильтров
+      operationId: create-user
+      parameters:
+      - description: Необходим user_id телеграма
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/v1.createUser'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/domain.Filter'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/v1.result'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v1.result'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/v1.result'
+      summary: CreateUser
+      tags:
+      - user
+  /user/subway/lines:
+    post:
+      consumes:
+      - application/json
+      description: автокомплит для линий метро
+      operationId: get-subway-lines
+      parameters:
+      - description: кверики
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/v1.findLines'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/domain.SubwayLines'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/v1.result'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v1.result'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/v1.result'
+      summary: GetSubwayLines
+      tags:
+      - user
+  /view/add:
+    post:
+      consumes:
+      - application/json
+      description: Добавление объявлений в просмотренные
+      operationId: ad-viewed
+      parameters:
+      - description: Необходим user_id телеграма и id циан объявления
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/v1.createView'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/v1.result'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v1.result'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/v1.result'
+      summary: AdViewed
+      tags:
+      - user
+swagger: "2.0"
